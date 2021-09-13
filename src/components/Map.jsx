@@ -13,9 +13,9 @@ import {
   Marker,
 } from 'react-google-maps';
 
-const apiKey = "";
+const apiKey = "AIzaSyDD_EyIVFiO-R51XzLDqZlF5824t3KFaAg";
 
-const MapWithAMakredInfoWindow = compose(
+const MapWithAMakredInfoWindow = compose(　
   withScriptjs,
   withGoogleMap,
 )(({
@@ -74,6 +74,8 @@ const Map = compose(
         lng={lng}
         location={location}
       />
+      {console.log(location)}
+      {console.log("Hey")}
       <h4>
       {location} の緯度、経度: LAT:{lat} LNG:{lng}  
         </h4>
@@ -89,34 +91,3 @@ Map.propTypes = {
 };
 
 export default Map;
-
-
-// import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-// import Geocode from "react-geocode";
-// import React, { Component } from 'react'
-
-
-// class Map extends Component{
-//     render(){
-//         const containerStyle = {
-//         width: "400px",
-//         height: "400px",
-//         };
-
-//         const center = {
-//             lat: 35,
-//             lng: 140,
-//         };
-        
-//         return(
-//             <LoadScript googleMapsApiKey = "AIzaSyDowSiBu0DPlPwxFtTx8UPYjncHMF817Us">
-//                 <GoogleMap
-//                 mapContainerStyle = {containerStyle}
-//                 center = {center}
-//                 zoom = {17}
-//                 />
-//             </LoadScript>
-//         );
-//     };
-// };
-// export default Map;

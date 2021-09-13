@@ -1,3 +1,12 @@
+#Updates on 2021/09/13
+1. Added pull down.
+2. Added txt boxes for address input
+3. Added btns for cancel, show on map, and change address
+4. Added some styling.
+## Issues
+1. It can send address to Map.jsx, but component does not update.
+2. It can reset text field as data, but it does not visually.
+
 # Updates on 2021/09/08
 1. Activated API
 2. It can show map in website.(Currently in crude state)
