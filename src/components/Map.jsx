@@ -75,7 +75,7 @@ const Map = compose(
         location={location}
       />
       {console.log(location)}
-      {console.log("Hey")}
+      {console.log("I was called from Select.jsx !")}
       <h4>
       {location} の緯度、経度: LAT:{lat} LNG:{lng}  
         </h4>

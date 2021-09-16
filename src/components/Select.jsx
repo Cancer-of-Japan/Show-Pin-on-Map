@@ -1,4 +1,5 @@
 import React from 'react';
+import Popup from 'reactjs-popup';
 import Map from "./Map";
 import { useState } from 'react';
 import Geocode from 'react-geocode';
@@ -6,41 +7,49 @@ import './form.css'
 
 
  
-class Select extends React.Component {
+export class Select extends React.Component {
   
   constructor(props){
     super(props);
     this.state = {
-      usstate: props.initState,
-      city: 'Tokyo', 
-      addrs: 'Shibuya',
-      building: ''
+      prefecture: 'Tokyo',
+      city: 'Shibuya', 
+      addrs: 'ekimae',
+      building: '',
+      showMap: false,
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.onTextAreaChange = this.onTextAreaChange.bind(this);
+    this.onAddrsChange = this.onAddrsChange.bind(this);
+    this.onBuildingChange = this.onBuildingChange.bind(this);
     this.resetText = this.resetText.bind(this);
   }
 
   onChange(e){
     console.log(e.target.value);
-    this.setState({ usstate: e.target.value});
+    this.setState({ prefecture: e.target.value});
     
   }
 
-  handleClick(event){
+  handleClick = (event) =>{
+    this.state.showMap = true;
     console.log("clicked");
-    
+    this.setState({showMap: event.target.value});
   }
 
-  resetText(event){
+  resetText = (event)=>{
     console.log("reset !")
-    this.state.city = '';
+    this.state.prefecture = ' ';
+    this.state.city = ' ';
     this.state.addrs = ' ';
     this.state.building = ' ';
+    this.setState({prefecture: event.target.value});
     this.setState({ city: event.target.value });
     this.setState({ addrs: event.target.value });
     this.setState({ building: event.target.value });
+    //this.setState();
   }
 
   onSubmit(e){
@@ -52,13 +61,22 @@ class Select extends React.Component {
     );
   }
 
-  onChnageAddress(){
-    alert("Your file is being uploaded!");
+  onChangeAddress = (event) => {
+    alert("Change to  " + this.state.prefecture  + " " + this.state.city + " " + this.state.addrs + " " + this.state.building );
+    <Popup trigger={<button> Trigger</button>} position="right center">
+    <div>Popup content here !!</div>
+  </Popup>
   }
 
-  onTextAreaChange(event){
+  onTextAreaChange = (event) =>{
     this.setState({ city: event.target.value });
+  }
+
+  onAddrsChange = (event)=>{
     this.setState({ addrs: event.target.value });
+  }
+
+  onBuildingChange = (event) =>{
     this.setState({ building: event.target.value });
   }
 
@@ -131,11 +149,12 @@ class Select extends React.Component {
             </h3>
             <select　
               className = "drop-list"
-              value={this.state.usstate}
+              value={this.state.prefecture}
               onChange={this.onChange}>
               {options}
             </select>
           </div>
+          
           <div>
           <h3 className = 'menu-text'>
               City
@@ -156,7 +175,7 @@ class Select extends React.Component {
               className = "address-box"
               type = 'text'
               value = {this.state.value}
-              onChange={this.onTextAreaChange}
+              onChange={this.onAddrsChange}
             />
             <br></br>
             <h3 className = 'menu-text'>
@@ -167,7 +186,7 @@ class Select extends React.Component {
               className = "address-box"
               type = 'text'
               value = {this.state.value}
-              onChange={this.onTextAreaChange}
+              onChange={this.onBuildingChange}
             />
           </div>
           <div>
@@ -190,7 +209,7 @@ class Select extends React.Component {
             <button
               className = "change-btn"
               type="submit"
-              onClick = {this.onChnageAddress}
+              onClick = {this.onChangeAddress}
               >
                 Change !
             </button>
@@ -199,7 +218,7 @@ class Select extends React.Component {
         </form>,
         <div>
         <h1>
-            {this.state.city}
+            {this.state.prefecture + ' ' + this.state.city + ' ' + this.state.addrs + ' ' + this.state.building}
             <Map location = {this.state.city + ' ' + this.state.addrs + ' ' + this.state.building}/>
 
           </h1>
